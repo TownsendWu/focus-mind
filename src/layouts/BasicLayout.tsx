@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import SidebarMenu from '../components/SidebarMenu';
 import MainContentLayout from './MainContentLayout';
 import ResizablePanel from '../components/ResizablePanel';
-import { layoutConfigMap } from './layoutConfigs';
+import { layoutConfigMap } from './layoutConfigMap';
 
 interface BasicLayoutProps {
   thirdColumn?: React.ReactNode;

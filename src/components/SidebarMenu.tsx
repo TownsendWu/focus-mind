@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Home, CheckCircle, Settings, User, Trash2 } from "lucide-react";
+import { Home, CheckCircle, Settings, User, Trash2, Brain } from "lucide-react";
 
 interface SidebarProps {
   activeItem?: string;
@@ -40,8 +40,17 @@ const Sidebar: React.FC<SidebarProps> = ({ activeItem, onMenuClick }) => {
     }
   };
 
+
   return (
     <div className="w-12.5 h-full bg-gray-50 dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 flex flex-col items-center py-4 gap-2">
+      {/* Logo */}
+      <button
+        className="mb-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200"
+        title="Focus Mind"
+      >
+        <Brain size={28} className="text-blue-500" />
+      </button>
+
       {menuItems.map((item) => {
         const Icon = item.icon;
         const isActive = activeItem === item.id;
