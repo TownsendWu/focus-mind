@@ -1,4 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { RouterProvider as  Router } from 'react-router-dom';
+
 import BasicLayout from '../layouts/basic-layout';
 import HomePage from '../pages/home-page';
 import TasksPage from '../pages/tasks-page';
@@ -6,7 +8,7 @@ import TrashPage from '../pages/trash-page';
 import SettingsPage from '../pages/settings-page';
 import ProfilePage from '../pages/ideas-page';
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <BasicLayout />,
@@ -77,3 +79,7 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+export default function RouterProvider() {
+  return <Router router={router} />;
+}
