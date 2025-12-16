@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
-import SidebarMenu from '../components/SidebarMenu';
-import MainContentLayout from './MainContentLayout';
-import ResizablePanel from '../components/ResizablePanel';
-import { layoutConfigMap } from './layoutConfigMap';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import NavMenu from "@/components/menu/nav-menu";
+import MainContentLayout from "./main-content-layout";
+import ResizablePanel from "@/components/resizable-panel";
+import Header from "@/components/header";
 
 interface BasicLayoutProps {
   thirdColumn?: React.ReactNode;
@@ -12,30 +12,20 @@ interface BasicLayoutProps {
 
 const BasicLayout: React.FC<BasicLayoutProps> = ({
   thirdColumn,
-  className = ''
+  className = "",
 }) => {
-  const [activeMenu, setActiveMenu] = useState('home');
-  const location = useLocation();
-
-  // 直接根据路由路径获取布局配置，避免不必要的状态更新
-  const currentLayoutConfig = layoutConfigMap[location.pathname] || layoutConfigMap['/'];
+  const [activeMenu, setActiveMenu] = useState("home");
 
   return (
     <div className={`flex h-screen w-full ${className}`}>
       {/* 第一栏：固定宽度 50px */}
-      <div className="w-12.5 h-full shrink-0">
-        <SidebarMenu
-          activeItem={activeMenu}
-          onMenuClick={setActiveMenu}
-        />
+      <div className="w-15 h-full shrink-0">
+        <NavMenu activeItem={activeMenu} onMenuClick={setActiveMenu} />
       </div>
 
       {/* 第二栏：主内容区域，占据剩余空间 */}
       <div className="flex-1 h-full">
-        <MainContentLayout
-          header={currentLayoutConfig.header}
-          sidebar={currentLayoutConfig.sidebar}
-        >
+        <MainContentLayout header={<Header />}>
           {/* 使用 Outlet 渲染子路由内容 */}
           <Outlet />
         </MainContentLayout>
@@ -51,7 +41,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({
         <div className="h-full bg-gray-50 dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700">
           {thirdColumn || (
             <div className="p-4">
-              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">副内容区</h3>
+              <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+                副内容区
+              </h3>
               <p className="text-xs text-gray-500 dark:text-gray-500">
                 拖动左侧边框可调整宽度
               </p>

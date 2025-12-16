@@ -1,53 +1,7 @@
 import React from 'react';
 
-// 用户信息侧边栏组件
-const UserProfileSidebar = () => (
-  <div className="text-center mb-6">
-    <div className="w-24 h-24 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-3"></div>
-    <h4 className="font-semibold text-gray-800 dark:text-gray-200">用户名</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">user@example.com</p>
-  </div>
-);
-
-// 用户统计信息组件
-const UserStats = () => (
-  <div className="space-y-4 text-sm">
-    <div>
-      <span className="text-gray-600 dark:text-gray-400">加入时间</span>
-      <p className="text-gray-800 dark:text-gray-200">2024年1月1日</p>
-    </div>
-    <div>
-      <span className="text-gray-600 dark:text-gray-400">完成任务</span>
-      <p className="text-gray-800 dark:text-gray-200">156 个</p>
-    </div>
-    <div>
-      <span className="text-gray-600 dark:text-gray-400">专注时长</span>
-      <p className="text-gray-800 dark:text-gray-200">324 小时</p>
-    </div>
-  </div>
-);
-
 const ProfilePage: React.FC = () => {
-  // 个人资料页面布局配置
-  const layoutConfig = {
-    header: (
-      <div className="flex items-center justify-between h-full px-6 border-b border-gray-200 dark:border-gray-700">
-        <h1 className="text-xl font-semibold">个人资料</h1>
-        <button className="px-4 py-2 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-          编辑资料
-        </button>
-      </div>
-    ),
-    sidebar: (
-      <div className="h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-4">
-        <UserProfileSidebar />
-        <UserStats />
-      </div>
-    ),
-  };
 
-  // 将布局配置导出供 BasicLayout 使用
-  ProfilePage.layoutConfig = layoutConfig;
 
   return (
     <div className="p-6">
