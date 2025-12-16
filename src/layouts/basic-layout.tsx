@@ -1,26 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import NavMenu from "@/components/menu/nav-menu";
 import MainContentLayout from "./main-content-layout";
 import ResizablePanel from "@/components/resizable-panel";
 import Header from "@/components/header";
+import { NavigationProvider } from "@/contexts/navigation-context";
 
 interface BasicLayoutProps {
   thirdColumn?: React.ReactNode;
   className?: string;
 }
 
-const BasicLayout: React.FC<BasicLayoutProps> = ({
+const BasicLayoutContent: React.FC<BasicLayoutProps> = ({
   thirdColumn,
   className = "",
 }) => {
-  const [activeMenu, setActiveMenu] = useState("home");
-
   return (
     <div className={`flex h-screen w-full ${className}`}>
       {/* 第一栏：固定宽度 50px */}
       <div className="w-15 h-full shrink-0">
-        <NavMenu activeItem={activeMenu} onMenuClick={setActiveMenu} />
+        <NavMenu />
       </div>
 
       {/* 第二栏：主内容区域，占据剩余空间 */}
@@ -52,6 +51,14 @@ const BasicLayout: React.FC<BasicLayoutProps> = ({
         </div>
       </ResizablePanel>
     </div>
+  );
+};
+
+const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
+  return (
+    <NavigationProvider>
+      <BasicLayoutContent {...props} />
+    </NavigationProvider>
   );
 };
 
